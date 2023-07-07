@@ -24,8 +24,8 @@ react-dom
 
 8. Setup the entry point and root component for the application; create following folder in the `src` folder.
 
-- (root component) export an `App` function from `App.tsx`.
-- (entry point) Add `index.tsx` and mount the `App` component to the `React-DOM`.
+   - (root component) export an `App` function from `App.tsx`.
+   - (entry point) Add `index.tsx` and mount the `App` component to the `React-DOM`.
 
 9. Install `Babel` with necessary plugins as dev dependencies; Now this setup can be rendered in the browser but for that the browser cannot understood by the browser, for that we need `babel` (convert React and typescript code to javascript); we need to add the following plugins
 
@@ -34,18 +34,33 @@ react-dom
     @babel/preset-env
     @babel/preset-react
     @babel/preset-typescript
+    @babel/plugin-transform-runtime
 ```
 
-  - add a `.babelrc`file in the root folder for listing the preset config for `babel`; now the project can transpile modern javascript features in to a format that the browser can understand.
+- add a `.babelrc`file in the root folder for listing the preset config for `babel`; now the project can transpile modern javascript features in to a format that the browser can understand.
 
-10. Add a module bundler; 
-  - Use `webpack` to bundle the code of different components; and then referenced in the `index.html` file
-  - Add `webpack` related packages as dev dependencies; following
-  ```bash
-    webpack
-    webpack-cli
-    webpack-dev-server
-    html-webpack-plugin
-  ```
+10. Add a module bundler (Webpack);
 
-  - we also need a `babel-loader` package which allows tranpspilling javascript files using `babel` and `webpack`
+- Use `webpack` to bundle the code of different components; and then referenced in the `index.html` file
+- Add `webpack` related packages as dev dependencies; following
+
+```bash
+  webpack
+  webpack-cli
+  webpack-dev-server
+  html-webpack-plugin
+```
+
+- we also need a `babel-loader` package which allows tranpspilling javascript files using `babel` and `webpack`
+  - create another folder `webpack` within the root.
+  - create a file `webpack.config.js` within the new folder.
+
+11. Add `pnpm` script to run the application.
+
+- Add it to `package.json` with key name as `scirpts`
+
+```bash
+"scripts": {
+  "start" : "webpack serve --config webpack/webpack.config.js --open",
+}
+```
